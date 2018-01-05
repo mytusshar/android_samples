@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <title>Abbreviation</title>
+  </head>
+
+  <body>
+
+    <div>
+      <label for="jscode">Enter Text:</label>
+      <input type="text" id="jscode">
+      <button>Submit</button>
+    </div>
+    <p>Result:</p>
+
+  </body>
+
+
+    <script>
+      var input = document.querySelector('input');
+      var btn = document.querySelector('button');
+      var para = document.querySelector('p');
+
+      btn.onclick = function() {
+
+        var  value = input.value;
+        var text = "";
+        var arr = ['A'];
+        for(var i = 66; i < 91; i++){
+          arr[arr.length] = String.fromCharCode(i);
+          //text = text + arr[arr.length-1];
+        }
+
+        while(value > 0){
+          var rem = value / 26;
+          value = value / 26;
+          if(value > 26)
+          text = text + arr[value-1];
+          if(value < 26){
+            text = text + arr[rem];
+          }
+        }
+        
+
+        para.textContent = "" + text;
+
+      }
+      
+    </script>
+
+
+
+</html>
