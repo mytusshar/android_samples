@@ -1,72 +1,70 @@
-
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <title>Abbreviation</title>
   </head>
 
   <body>
-
-    <div>
-      <label for="jscode">Enter Text:</label>
-      <input type="text" id="jscode">
-      <button>Submit</button>
+    <div id = "inputFrame">
+      <label for = "inputNumber"> Enter number: </label>
+      <input id = "inputNumber" type = "text">
+      <button id = "submit" onclick = "abbreviateNumber()"> Submit </button>
     </div>
-    <p>Result:</p>
-
+    <p id = "result">Result:</p>
   </body>
 
+  <script>   
+    function dispayOutput(resultText) {
+      document.getElementById("result").innerHTML = resultText;
+    }
 
-    <script>
-      var input = document.querySelector('input');
-      var btn = document.querySelector('button');
-      var para = document.querySelector('p');
+    function abbreviateNumber() {      
+      var inputNumber = document.getElementById("inputNumber").value;
+      var resultText;
+      var thousand = 1000;
+      var million = 1000000;
+      var billion = 1000000000;
+      var trillion = 1000000000000;
+      var resultText;
 
-      btn.onclick = function() {
-
-        var  value = input.value;
-        var k = 1000;
-        var m = 1000000;
-        var b = 1000000000;
-        var t = 1000000000000;
-        
-        var x;
-        for(var i = 1000; i <= t; i = i*1000){
-        	x = value / i;
-        	if(x <= 10){
-        		switch(i) {
-				    case k:
-				        text = x + "K";
-				        break;
-				    case m:
-				        text = x + "M";
-				        break;
-				    case b:
-				        text = x + "B";
-				        break;
-				    case t:
-				        text = x + "T";
-				        break;				    
-				    default:
-				        text = x;
-				}
-				break; 
-        	}else{
-        		if(i == t)
-        			text = x + "T";
-        	}
-
-        }
-
-        para.textContent = "" + text;
-
-      }
+      if (inputNumber <= 999) {
+          resultText = inputNumber;
+          dispayOutput(resultText);
+          return;
+      } 
       
-    </script>
+      for (var i = 1000; i <= trillion; i = i*1000) {
+        var divisionValue = (inputNumber / i);
 
-    
+        if (divisionValue <= 1000) {
+          switch (i) {
+            case thousand:
+              resultText = divisionValue + "K";
+              break;
+            case million:
+              resultText = divisionValue + "M";
+              break;
+            case billion:
+              resultText = divisionValue + "B";
+              break;
+            case trillion:
+              resultText = divisionValue + "T";
+              break;				    
+            default:
+              resultText = divisionValue;
+          }
+          break; 
+        } 
 
+        if (i == trillion) {
+          resultText = divisionValue + "T";
+        }
+      }
+      dispayOutput(resultText);
+    }
+
+  </script>
 
 </html>
+

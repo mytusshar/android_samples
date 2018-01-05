@@ -8,40 +8,46 @@
 
   <body>
 
-    <div>
-      <label for="jscode">Enter Text:</label>
-      <input type="text" id="jscode">
-      <button>Submit</button>
+    <div id = "inputFrame">
+      <label for = "inputString"> Enter Text: </label>
+      <input id = "inputString" type = "text">
+      <button id = "submit" onclick = "checkPalindrome()"> Submit </button>
     </div>
-    <p>Result:</p>
+    <p id = "result">Result:</p>
 
   </body>
 
-
-    <script>
-      var input = document.querySelector('input');
-      var btn = document.querySelector('button');
-      var para = document.querySelector('p');
-
-      btn.onclick = function() {
-        var  str = input.value;
-
-        for (var i = 0; i <= str.length; i++) {
-
-          if(str.charAt(i) == str.charAt(str.length - 1 - i)){
-            if(i == str.length){
-              para.textContent = "Palindrome";
-            }
-          }else{
-            para.textContent = "Not Palindrome";
-            break;
-          }
-
-        }
-        
-      }
+  <script>
+    
+    function checkPalindrome() {
+      var inputString = document.getElementById("inputString").value;
+      var stringLength = inputString.length;
+      var halfLength = Math.floor(inputString.length / 2);
+      var startIndex;
+      var endIndex;
+      var startChar;
+      var endChar;
+      var resultText;
       
-    </script>
+      for (startIndex = 0; startIndex <= halfLength; startIndex++) {
+        endIndex = stringLength - 1 - startIndex;
+        startChar = inputString.charAt(startIndex);
+        endChar = inputString.charAt(endIndex);
+        
+        if (startChar == endChar) {
+          if (startIndex >= endIndex) {
+            resultText = "Palindrome";            
+          }
+        } else {
+          resultText = "Not Palindrome";
+          break;
+        }
 
+      } 
+
+      document.getElementById("result").innerHTML = resultText;
+  }
+    
+  </script>
 
 </html>
